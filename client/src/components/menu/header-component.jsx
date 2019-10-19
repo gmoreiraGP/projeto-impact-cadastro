@@ -5,7 +5,7 @@ import { Container } from '../Container'
 const Cabecalho = (props) => {
     return (
       <Container>
-          <h2>
+          <h2  className="text-center">
               <strong>{props.title} | </strong> 
                 
               <small>{props.description}</small>
