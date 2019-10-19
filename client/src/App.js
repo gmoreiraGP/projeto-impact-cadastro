@@ -2,17 +2,17 @@ import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 
-import Cursos from './pages/cursos'
-import Contato from './pages/contato'
+import { Container } from './components/Container'
 import Menu from './components/menu'
+import Router from './components/router'
+
 
 function App() {
   return (
-    <div className="container-fluid">
+    <Container fluid>
       <Menu />
-      <Cursos />
-      <Contato />
-    </div>
+      <Router />
+    </Container>
   );
 }
 
