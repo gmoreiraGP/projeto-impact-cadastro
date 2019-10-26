@@ -103,6 +103,11 @@ export default class Cadastro extends Component {
         }
     }
 
+    limpar = function(e){
+        e.preventDefault()
+        this.setState({...this.initialState, data: this.state.data})
+    }
+
     render() {
         return (
             <div className="row">
@@ -116,6 +121,7 @@ export default class Cadastro extends Component {
                         categoria={this.state.categoria}
                         adicionarCurso={this.adicionarCurso.bind(this)}
                         textoBotao = {this.state._id && this.state.id !== '' ? 'Atualizar' : 'Adicionar'}
+                        limpar={this.limpar.bind(this)}
                     />
                 </div>
                 <div className="col-8">

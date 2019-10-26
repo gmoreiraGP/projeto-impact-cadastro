@@ -75,9 +75,14 @@ export default class Formulario extends React.Component {
                     </div>
                     <div className="form-group row">
                         <button
-                            className="btn btn-block btn-primary ml-3 mb-3"
+                            className="btn btn-block btn-success ml-3 mb-3"
                             onClick={this.props.adicionarCurso}>
                             {this.props.textoBotao}
+                        </button>
+                        <button
+                            className="btn btn-block btn-info ml-3 mb-3"
+                            onClick={this.props.limpar}>
+                                Limpar
                         </button>
                     </div>
                 </form>
