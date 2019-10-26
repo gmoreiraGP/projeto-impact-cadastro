@@ -12,14 +12,24 @@ import {
 
 
 class ContatoForm extends React.Component {
-
     adicionar = function(e) {
+        const { data, nome, email, assunto } = this.props
         e.preventDefault()
-        this.props.adicionarContato(this.props.data, this.props.nome, this.props.email, this.props.assunto)
+        this.props.adicionarContato(data, nome, email, assunto)
         alert('Contato enviado com sucesso')
     }
 
     render() {
+        const {
+            data,
+            nome,
+            email,
+            assunto,
+            alteraData,
+            alteraNome,
+            alteraEmail,
+            alteraAssunto
+        } = this.props
         return (
             <div>
                 <h3 className="border-bottom">Formulario</h3>
@@ -30,8 +40,8 @@ class ContatoForm extends React.Component {
                         <div className="col-sm-5 col-6">
                             <input type="date"
                                 className="form-control" id="data"
-                                value={this.props.data}
-                                onChange={this.props.alteraData} />
+                                value={data}
+                                onChange={alteraData} />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -40,8 +50,8 @@ class ContatoForm extends React.Component {
                         <div className="col-sm-9">
                             <input type="text"
                                 className="form-control" id="nome"
-                                value={this.props.nome}
-                                onChange={this.props.alteraNome} />
+                                value={nome}
+                                onChange={alteraNome} />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -50,8 +60,8 @@ class ContatoForm extends React.Component {
                         <div className="col-sm-9">
                             <input type="email"
                                 className="form-control" id="email"
-                                value={this.props.email}
-                                onChange={this.props.alteraEmail} />
+                                value={email}
+                                onChange={alteraEmail} />
                         </div>
                     </div>
                     <div className="form-group row">
@@ -60,8 +70,8 @@ class ContatoForm extends React.Component {
                         <div className="col-sm-9">
                             <textarea className="form-control"
                                 id="assunto" rows="5"
-                                value={this.props.assunto}
-                                onChange={this.props.alteraAssunto} />
+                                value={assunto}
+                                onChange={alteraAssunto} />
                         </div>
                     </div>
                     <div className="form-group row">
