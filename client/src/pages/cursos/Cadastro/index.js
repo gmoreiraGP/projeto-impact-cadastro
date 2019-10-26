@@ -17,6 +17,8 @@ export default class Cadastro extends Component {
         categoria: 'REDES'
     }
 
+    textoBotao = "Adicionar";
+
     constructor(props) {
         super(props)
         this.state = this.initialState
@@ -56,61 +58,32 @@ export default class Cadastro extends Component {
             })
     }
 
-    listarCallback(data) {
+    listarCallback(data) {        
         this.setState({ ...this.state, data })
-    }
-
-    calbackError = function (error) {
-            const cargaHoraria = error.response.data.errors.cargaHoraria
-            const codigo = error.response.data.errors.codigo
-            const preco = error.response.data.errors.preco
-            const descricao = error.response.data.errors.descricao
-            const categoria = error.response.data.errors.categoria
-
-            var texto = ''
-
-            if (cargaHoraria) {
-                texto += 'Carga horária Inválida\n'
-            }
-
-            if (codigo) {
-                texto += 'Código Inválido\n'
-            }
-
-            if (preco) {
-                texto += 'Preço Inválido\n'
-            }
-            if (descricao) {
-                texto += 'Descrição Inválida\n'
-            }
-            if (categoria) {
-                texto += 'Categoria Inválida\n'
-            }
-            alert(texto)
     }
 
     adicionarCurso(e) {
         e.preventDefault();
-        const codigo = this.state.codigo;
-        const descricao = this.state.descricao;
-        const cargaHoraria = this.state.cargaHoraria;
-        const preco = this.state.preco;
-        const categoria = this.state.categoria;
-
+        const { _id, codigo, descricao, cargaHoraria, preco, categoria } = this.state
         const body = { codigo, descricao, cargaHoraria, preco, categoria }
-
-        axios.post(URL, body)
-            .then(_ => {
-                alert("Curso adicionado");
-                this.listar();
-                this.setState(this.initialState)
-            }).catch(this.calbackError);
+        
+        if (_id && _id.trim() !== '') {
+            axios.put(`${URL}/${_id}`, body)
+                .then(_ => {
+                    this._callbackSucess('Curso atualizado')
+                }).catch(this._calbackError);
+        } else {
+            axios.post(URL, body)
+                .then(_ => {
+                    this._callbackSucess('Curso adicionado')
+                }).catch(this._calbackError);
+        }
     }
-    
-    editarCurso = function(data){
+
+    editarCurso = function (data) {       
         this.setState({
             ...this.state,
-            _id: data.id,
+            _id: data._id,
             codigo: data.codigo,
             descricao: data.descricao,
             cargaHoraria: data.cargaHoraria,
@@ -119,14 +92,14 @@ export default class Cadastro extends Component {
         })
     }
 
-    removerCurso = function(data){
-        if(window.confirm("Você dejesa excluir curso selecionado?")){
+    removerCurso = function (data) {
+        if (window.confirm("Você dejesa excluir curso selecionado?")) {
             axios.delete(`${URL}/${data._id}`)
-            .then(response => {
-                alert(`Curso ${data.descricao} foi removido com sucesso.`)
-                this.listar()
-            })
-            .catch(err => console.log(err))
+                .then(response => {
+                    alert(`Curso ${data.descricao} foi removido com sucesso.`)
+                    this.listar()
+                })
+                .catch(err => console.log(err))
         }
     }
 
@@ -142,16 +115,52 @@ export default class Cadastro extends Component {
                         preco={this.state.preco}
                         categoria={this.state.categoria}
                         adicionarCurso={this.adicionarCurso.bind(this)}
+                        textoBotao = {this.state._id && this.state.id !== '' ? 'Atualizar' : 'Adicionar'}
                     />
                 </div>
                 <div className="col-8">
                     <List
                         batatas={this.state.data}
                         removerCurso={this.removerCurso.bind(this)}
-                        editarCurso={this.editarCurso.bind(this)}  
+                        editarCurso={this.editarCurso.bind(this)}
                     />
                 </div>
             </div>
         )
+    }
+
+    _calbackError = function (error) {
+        const cargaHoraria = error.response.data.errors.cargaHoraria
+        const codigo = error.response.data.errors.codigo
+        const preco = error.response.data.errors.preco
+        const descricao = error.response.data.errors.descricao
+        const categoria = error.response.data.errors.categoria
+
+        var texto = ''
+
+        if (cargaHoraria) {
+            texto += 'Carga horária Inválida\n'
+        }
+
+        if (codigo) {
+            texto += 'Código Inválido\n'
+        }
+
+        if (preco) {
+            texto += 'Preço Inválido\n'
+        }
+        if (descricao) {
+            texto += 'Descrição Inválida\n'
+        }
+        if (categoria) {
+            texto += 'Categoria Inválida\n'
+        }
+        alert(texto)
+    }
+
+    _callbackSucess = function (msg) {
+        alert(msg);
+        this.listar();
+        this.setState(this.initialState)
     }
 }
