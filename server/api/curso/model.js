@@ -7,6 +7,6 @@ const cursoSchema = new mongoose.Schema({
     cargaHoraria: { type: Number, required: true, min: 4 },
     preco: { type: Number, min: 0 },
     categoria: {type: String, uppercase: true,
-    enum:['INFORMATICA', 'ENGENHARIA', 'ADMINISTRACAO', 'REDES']}
+    enum:['INFORMÁTICA', 'ENGENHARIA', 'ADMINISTRAÇÃO', 'REDES']}
 });
 module.exports = restful.model('curso', cursoSchema);

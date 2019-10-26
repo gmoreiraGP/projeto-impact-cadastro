@@ -12,6 +12,25 @@ export default class List extends Component {
                 <td>{data.cargaHoraria}</td>
                 <td>{data.preco}</td>
                 <td>{data.categoria}</td>
+                <td>
+                    <button 
+                        className="btn btn-warning mr-3" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Editar"
+                        onClick={() => this.props.editarCurso(data)}>
+                            <i className="fa fa-edit"></i>
+                    </button>
+                    <button 
+                        type="button" 
+                        className="btn btn-danger" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Excluir"
+                        onClick={() => this.props.removerCurso(data)}>
+                            <i className="fa fa-trash-o"></i>
+                        </button>
+                </td>
             </tr>
         )
         )
@@ -31,6 +50,7 @@ export default class List extends Component {
                             <th scope="col">Carga Horária</th>
                             <th scope="col">Preço</th>
                             <th scope="col">Categoria</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
