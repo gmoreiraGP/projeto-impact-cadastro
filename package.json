@@ -1,0 +1,24 @@
+{
+  "name": "projetoReact",
+  "version": "1.0.0",
+  "description": "Teste",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmoreiraGP/projeto-impact-cadastro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gmoreiraGP/projeto-impact-cadastro/issues"
+  },
+  "homepage": "https://github.com/gmoreiraGP/projeto-impact-cadastro#readme",
+  "dependencies": {
+    "expo-cli": "^3.4.1",
+    "react-native-cli": "^2.0.1"
+  }
+}

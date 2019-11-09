@@ -6,49 +6,12 @@ import List from '../List'
 
 const URL = "http://localhost:3200/api/curso"
 
-export default class Cadastro extends Component {
-    initialState = {
-        _id: '',
-        data: [],
-        codigo: 0,
-        descricao: '',
-        cargaHoraria: 0,
-        preco: 0.0,
-        categoria: 'REDES'
-    }
-
-    textoBotao = "Adicionar";
-
-    constructor(props) {
-        super(props)
-        this.state = this.initialState
-    }
-
+class Cadastro extends Component {
+  
     componentWillMount() {
         this.listar()
     }
 
-    alteraCampos = function (target) {
-        switch (target.id) {
-            case 'codigo':
-                this.setState({ codigo: target.value })
-                break
-            case 'descricao':
-                this.setState({ descricao: target.value })
-                break
-            case 'cargaHoraria':
-                this.setState({ cargaHoraria: target.value })
-                break
-            case 'preco':
-                this.setState({ preco: target.value })
-                break
-            case 'categoria':
-                this.setState({ categoria: target.value })
-                break
-            default:
-                break
-        }
-    }
 
     listar() {
         axios.get(URL)
@@ -107,26 +70,19 @@ export default class Cadastro extends Component {
         e.preventDefault()
         this.setState({...this.initialState, data: this.state.data})
     }
-
     render() {
         return (
             <div className="row">
                 <div className="col-4">
                     <Form
-                        alteraCampos={this.alteraCampos.bind(this)}
-                        codigo={this.state.codigo}
-                        descricao={this.state.descricao}
-                        cargaHoraria={this.state.cargaHoraria}
-                        preco={this.state.preco}
-                        categoria={this.state.categoria}
                         adicionarCurso={this.adicionarCurso.bind(this)}
-                        textoBotao = {this.state._id && this.state.id !== '' ? 'Atualizar' : 'Adicionar'}
+                       // textoBotao = {this.state._id && this.state.id !== '' ? 'Atualizar' : 'Adicionar'}
                         limpar={this.limpar.bind(this)}
                     />
                 </div>
                 <div className="col-8">
                     <List
-                        batatas={this.state.data}
+                       // batatas={this.state.data}
                         removerCurso={this.removerCurso.bind(this)}
                         editarCurso={this.editarCurso.bind(this)}
                     />
@@ -170,3 +126,7 @@ export default class Cadastro extends Component {
         this.setState(this.initialState)
     }
 }
+
+
+
+export default Cadastro

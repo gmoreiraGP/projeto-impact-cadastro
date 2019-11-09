@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class List extends Component {
+class List extends Component {
 
-
+    
     renderLinhas = () => {
-        const cursos = this.props.batatas || []
+        const cursos = this.props.list || []
         return cursos.map(data => (
             <tr key={data._id}>
                 <th scope="row">{data.codigo}</th>
@@ -61,3 +62,9 @@ export default class List extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+   list: state.curso.lista
+})
+
+export default connect(mapStateToProps, null)(List)
