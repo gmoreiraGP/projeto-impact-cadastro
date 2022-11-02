@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/gmoreiraGP/projeto-impact-cadastro#readme",
   "dependencies": {
-    "expo-cli": "^3.4.1",
+    "expo-cli": "^6.0.6",
     "react-native-cli": "^2.0.1"
   }
 }
